@@ -22,4 +22,6 @@ Go to: http://localhost:1337/templates/:avatar_id
 
 Or anyone [here](https://docs.google.com/spreadsheets/d/1EAqBXEKVIpEMOYB3o0NAl2J0D8EI5AmsDXjAJBqonjU/edit#gid=0). Don't forget to include the style and version.
 
-e.g. http://localhost:1337/templates/104556134_20-s4-v1
+e.g. [http://localhost:1337/templates/104556134_20-s4-v1](http://localhost:1337/templates/104556134_20-s4-v1)
+
+The hosted version: [https://bitmoji-gif-server.herokuapp.com/templates/104556134_20-s4-v1](https://bitmoji-gif-server.herokuapp.com/templates/104556134_20-s4-v1)
