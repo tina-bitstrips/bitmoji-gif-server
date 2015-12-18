@@ -52,7 +52,7 @@ class BitmojiGifServer < Sinatra::Base
       animation = Magick::ImageList.new(*Dir["#{directory}/*.png"])
       animation.delay = 15
       animation.write(output)
-      gifs.push(output)
+      gifs.push("#{request.base_url}/#{output}")
     end
 
     { "data" => gifs }.to_json
