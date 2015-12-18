@@ -2,6 +2,8 @@
 
 Animated GIF server for a hackathon project.
 
+Preview them here: [http://localhost:1337/public/preview.html](http://localhost:1337/public/preview.html)
+
 
 ## Development
 
@@ -14,6 +16,12 @@ rackup -p 1337
 ```
 
 Go to: http://localhost:1337/templates/:avatar_id
+
+
+### Client-side
+
+Basic implementation of the API can be seen at `./public/preview.html`.
+
 
 `avatar_id` can be any of the following:
 

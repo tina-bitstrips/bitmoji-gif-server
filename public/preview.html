@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Bitmoji Animated GIF preview</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style type="text/css">
+    body {
+      margin: 0;
+    }
+
+    .gifs {
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .gifs img {
+      display: inline-block;
+      width: 33%;
+    }
+  </style>
+</head>
+<body>
+  <div id="gifs" class="gifs"></div>
+
+  <script type="text/javascript">
+    var avatarId = window.location.search.split('avatar_id=')[1] || '104556134_20-s4-v1';
+    var gifsElement = document.getElementById('gifs');
+
+    window.fetch('/templates/' + avatarId)
+      .then( (response) => {
+        response.json().then( (gifs) => {
+          gifs.data.forEach( (gif) => {
+            var img = document.createElement('img');
+            img.src = gif;
+
+            gifsElement.appendChild(img);
+          });
+        });
+      });
+  </script>
+
+</body>
+</html>

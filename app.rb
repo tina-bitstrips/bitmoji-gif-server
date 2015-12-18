@@ -7,7 +7,7 @@ require "json"
 class BitmojiGifServer < Sinatra::Base
 
   # public static directories
-  use Rack::Static, :urls => ["/tmp"]
+  use Rack::Static, :urls => ["/tmp", "/public"]
   
   # default, no avatar id
   get "/templates" do
