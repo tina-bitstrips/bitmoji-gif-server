@@ -5,14 +5,22 @@ require "open-uri"
 require "json"
 
 class BitmojiGifServer < Sinatra::Base
-  
+
   # public static directories
   use Rack::Static, :urls => ["/tmp"]
   
+  # default, no avatar id
+  get "/templates" do
+    generate_gifs_for_avatar_id "104556134_20-s4-v1"
+  end
+
+  # custom avatar id
   get "/templates/:avatar_id" do
+    generate_gifs_for_avatar_id params["avatar_id"]
+  end
+
+  def generate_gifs_for_avatar_id(avatar_id)
     gifs = []
-    avatar_id = params["avatar_id"] or "104556134_20-s4-v1"    
-    template_url = "https://da8lb468m8h1w.cloudfront.net/v2/cpanel/%s-%s.png?palette=1";
 
     data = [
       [ 7193113, 9462153, 7193113, 9462157 ], # world"s crudest waving gif,
@@ -23,6 +31,8 @@ class BitmojiGifServer < Sinatra::Base
       [ 9462767, 9462770, 9462790 ], # haha
       [ 9463009, 9463020 ] # brrr
     ]
+
+    template_url = "https://da8lb468m8h1w.cloudfront.net/v2/cpanel/%s-%s.png?palette=1";
 
     data.each_with_index do |set, index|
       directory = "tmp/#{index}"
