@@ -34,24 +34,25 @@ class BitmojiGifServer < Sinatra::Base
 
     template_url = "https://da8lb468m8h1w.cloudfront.net/v2/cpanel/%s-%s.png?palette=1";
 
-    data.each_with_index do |set, index|
-      directory = "tmp/#{index}"
+    data.each_with_index do |set, set_index|
+      directory = "tmp/#{set_index}"
       FileUtils::mkdir_p directory
 
-      images_to_gif = set.map do |template_id|
+      set.each_with_index do |template_id, template_index|
         template = sprintf template_url, template_id, avatar_id
 
-        File.open("#{directory}/#{template_id}.png", "wb") do |fo|
+        File.open("#{directory}/#{template_index}.png", "wb") do |fo|
           fo.write open(template).read 
         end
       end
 
-      # make the GIFS
+      # make the GIFs
+      output = "#{directory}/animated.gif"
+
       animation = Magick::ImageList.new(*Dir["#{directory}/*.png"])
-      animation.delay = 10
-      animation.write("#{directory}/animated.gif")
-      
-      gifs.push("/#{directory}/animated.gif")
+      animation.delay = 15
+      animation.write(output)
+      gifs.push(output)
     end
 
     { "data" => gifs }.to_json
