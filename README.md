@@ -5,35 +5,21 @@ Animated GIF server for a hackathon project.
 
 ## Development
 
-Template data is in `data.js`.
+Everything is in `app.rb`.
 
 To run the server, run the following:
 
 ```
-node index
+rackup -p 1337
 ```
 
-Open http://localhost:1337 to see the docs.
+Go to: http://localhost:1337/templates/:avatar_id
 
+`avatar_id` can be any of the following:
 
-## GIFs
+- `104556134_20-s4-v1` Tina
+- `3064769_20-s4-v1` (Jason)
 
-Example from `./tmp/1`: 
+Or anyone [here](https://docs.google.com/spreadsheets/d/1EAqBXEKVIpEMOYB3o0NAl2J0D8EI5AmsDXjAJBqonjU/edit#gid=0). Don't forget to include the style and version.
 
-```
-cd tmp/1
-```
-
-Run this:
-
-```
-convert -delay 50  -size 398x398 \
-          -dispose previous \
-          -page +0+0 9449032.png   -page +0+0 9462306.png  \
-          -page +0+0 9462322.png   -page +0+0 9462338.png  \
-          -loop 0  animation.gif
-```
-
-## Deployment 
-
-- Heroku build pack with ImageMagick: https://github.com/ello/heroku-buildpack-imagemagick-cedar-14
+e.g. http://localhost:1337/templates/104556134_20-s4-v1

@@ -1,21 +1,22 @@
 require 'sinatra/base'
+require 'RMagick'
+require 'fileutils'
+require "open-uri"
+require 'json'
 
 class BitmojiGifServer < Sinatra::Base
-  require 'RMagick'
-  require 'fileutils'
-  require "open-uri"
-  require 'json'
 
   set :static, true
   set :public_folder, '/tmp'
 
   use Rack::Static, :urls => ['/tmp']
   
-  get '/templates' do
-
+  get '/templates/:avatar_id' do
     gifs = []
-
-    tinaAvatarIdForDebugging = '104556134_20-s4-v1';
+    avatar_id = params['avatar_id'] or '104556134_20-s4-v1'
+    
+    # binding.pry
+    
     template_url = 'https://da8lb468m8h1w.cloudfront.net/v2/cpanel/%s-%s.png?palette=1';
 
     data = [
@@ -33,7 +34,7 @@ class BitmojiGifServer < Sinatra::Base
       FileUtils::mkdir_p directory
 
       images_to_gif = set.map do |template_id|
-        template = sprintf template_url, template_id, tinaAvatarIdForDebugging
+        template = sprintf template_url, template_id, avatar_id
 
         File.open("#{directory}/#{template_id}.png", 'wb') do |fo|
           fo.write open(template).read 
