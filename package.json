@@ -1,0 +1,14 @@
+{
+  "name": "bitmoji-gif-server",
+  "version": "1.0.0",
+  "description": "Animated GIF service for Bitmoji",
+  "main": "index.js",
+  "author": "Tina Holly",
+  "license": "ISC",
+  "dependencies": {
+    "hapi": "^11.1.2",
+    "hapi-swagger": "^2.2.4",
+    "inert": "^3.2.0",
+    "vision": "^4.0.1"
+  }
+}
