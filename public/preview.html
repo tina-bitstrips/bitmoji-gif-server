@@ -24,15 +24,20 @@
   </style>
 </head>
 <body>
-  <div id="gifs" class="gifs"></div>
+  <div id="gifs" class="gifs">
+    <strong id="loading">Loading...</strong>
+  </div>
 
   <script type="text/javascript">
     var avatarId = window.location.search.split('avatar_id=')[1] || '104556134_20-s4-v1';
     var gifsElement = document.getElementById('gifs');
+    var loading = document.getElementById('loading');
 
     window.fetch('/templates/' + avatarId)
       .then( (response) => {
         response.json().then( (gifs) => {
+          loading.remove();
+
           gifs.data.forEach( (gif) => {
             var img = document.createElement('img');
             img.src = gif;
