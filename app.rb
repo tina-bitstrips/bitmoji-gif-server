@@ -23,7 +23,7 @@ class BitmojiGifServer < Sinatra::Base
     gifs = []
 
     data = [
-      [ 7193113, 9462153, 7193113, 9462157 ], # world"s crudest waving gif,
+      [ 7193113, 9462153, 7193113, 9462157 ], # world's crudest waving gif,
       [ 9449032, 9462306, 9462338, 9462322 ], # basic santa wave v1
       [ 9462463, 9462473, 9462485, 9462505 ], # good morning
       [ 9463270, 9463272, 9463273, 9463275, 9463287, 9463289, 9463297, 9463296, 9463299, 9463300 ], # rain
