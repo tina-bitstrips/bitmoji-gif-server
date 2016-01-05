@@ -8,7 +8,7 @@ class BitmojiGifServer < Sinatra::Base
 
   # public static directories
   use Rack::Static, :urls => ["/tmp", "/public"]
-  
+
   # default, no avatar id
   get "/templates" do
     generate_gifs_for_avatar_id "104556134_20-s4-v1"
@@ -20,6 +20,8 @@ class BitmojiGifServer < Sinatra::Base
   end
 
   def generate_gifs_for_avatar_id(avatar_id)
+    content_type :json
+
     gifs = []
 
     data = [
@@ -43,7 +45,7 @@ class BitmojiGifServer < Sinatra::Base
         template = sprintf template_url, template_id, avatar_id
 
         File.open("#{directory}/#{template_index}.png", "wb") do |fo|
-          fo.write open(template).read 
+          fo.write open(template).read
         end
       end
 
